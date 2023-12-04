@@ -38,15 +38,15 @@ fun main() {
     println(part2) // 54087
 }
 
-fun List<String>.part1() = sumOf { "${it.first { it.isDigit() }}${it.last { it.isDigit() }}".toInt() }
+private fun List<String>.part1() = sumOf { "${it.first { it.isDigit() }}${it.last { it.isDigit() }}".toInt() }
 
-fun List<String>.part2() = sumOf {
+private fun List<String>.part2() = sumOf {
     val first = it.findFirstNumber()
     val last = it.findLastNumber()
     "$first$last".toInt()
 }
 
-fun String.findFirstNumber(): Int {
+private fun String.findFirstNumber(): Int {
     val firstDigit = firstOrNull { it.isDigit() }
     val firstNumber = findNumbers().minByOrNull { indexOf(it) }
     if (firstNumber == null || firstDigit != null && indexOf(firstDigit) < indexOf(firstNumber)) {
@@ -55,7 +55,7 @@ fun String.findFirstNumber(): Int {
     return NUMBERS_TO_INT[firstNumber]!!
 }
 
-fun String.findLastNumber(): Int {
+private fun String.findLastNumber(): Int {
     val lastDigit = lastOrNull { it.isDigit() }
     val lastNumber = findNumbers().maxByOrNull { lastIndexOf(it) }
     if (lastNumber == null || lastDigit != null && lastIndexOf(lastDigit) > lastIndexOf(lastNumber)) {
@@ -64,4 +64,4 @@ fun String.findLastNumber(): Int {
     return NUMBERS_TO_INT[lastNumber]!!
 }
 
-fun String.findNumbers() = NUMBERS.filter { contains(it) }
+private fun String.findNumbers() = NUMBERS.filter { contains(it) }
